@@ -8,9 +8,14 @@ export default function Navbar() {
                 Resumind
             </p>
         </Link>
-        <Link to="/upload" className="primary-button w-fit">
-            Upload Resume
-        </Link>
+        <div className="flex gap-3">
+            <Link to="/archetypes" className="primary-button w-fit">
+                Archetypes
+            </Link>
+            <Link to="/upload" className="primary-button w-fit">
+                Analyze Resume
+            </Link>
+        </div>
     </nav>
   )
 }

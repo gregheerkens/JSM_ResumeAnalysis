@@ -1,4 +1,10 @@
-interface Job {
+interface Archetype {
+    id: string;
+    name: string;
+    filePath: string;
+  }
+
+  interface Job {
     title: string;
     description: string;
     location: string;
@@ -9,11 +15,14 @@ interface Job {
     id: string;
     companyName?: string;
     jobTitle?: string;
+    jobDescription?: string;
+    archetypeName?: string;
     imagePath: string;
     resumePath: string;
     feedback: Feedback;
+    tailoredResume?: string;
   }
-  
+
   interface Feedback {
     overallScore: number;
     ATS: {

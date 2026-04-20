@@ -135,6 +135,42 @@ export const resumes: Resume[] = [
         };
       }`;
   
+  export const prepareRewriteInstructions = ({
+    jobTitle,
+    jobDescription,
+    feedback,
+  }: {
+    jobTitle: string;
+    jobDescription: string;
+    feedback: Feedback;
+  }) =>
+    `You are an expert resume writer and career strategist specializing in ATS optimization.
+
+    You have already analyzed this resume and identified the following gaps and strengths:
+    - Overall score: ${feedback.overallScore}/100
+    - ATS score: ${feedback.ATS.score}/100
+    - Key ATS issues: ${feedback.ATS.tips.filter(t => t.type === "improve").map(t => t.tip).join("; ")}
+    - Content gaps: ${feedback.content.tips.filter(t => t.type === "improve").map(t => t.tip).join("; ")}
+    - Skills gaps: ${feedback.skills.tips.filter(t => t.type === "improve").map(t => t.tip).join("; ")}
+
+    Now rewrite this resume tailored specifically for the following role:
+    Job Title: ${jobTitle}
+    Job Description: ${jobDescription}
+
+    Rules:
+    - Directly address every gap identified in your analysis above
+    - Mirror the exact language and keywords from the job description naturally — do not stuff keywords awkwardly
+    - Lead with what this specific listing prioritizes most
+    - Keep all facts, roles, titles, dates, and achievements 100% accurate — do not fabricate anything
+    - You may reframe, reorder, emphasize, and strengthen language — but only what is already true
+    - Write in a natural human voice. Avoid AI-generated patterns that make the output detectable as machine-written:
+      - No em dashes (—) anywhere in the document
+      - No phrases like "spearheaded", "leveraged", "orchestrated", "fostered", "championed", "revolutionized", "transformative", "cutting-edge", "synergy", or similar corporate filler
+      - No nested bullet points or excessive bold formatting
+      - Prefer plain, direct language over inflated descriptors
+      - Sentence rhythm should vary naturally — not every bullet should follow the exact same grammatical structure
+    - Return the rewritten resume as clean markdown only, no commentary, no preamble, no explanation.`;
+
   export const prepareInstructions = ({
     jobTitle,
     jobDescription,

@@ -35,7 +35,7 @@ export interface PdfConversionResult {
       const pdf = await lib.getDocument({ data: arrayBuffer }).promise;
       const page = await pdf.getPage(1);
   
-      const viewport = page.getViewport({ scale: 4 });
+      const viewport = page.getViewport({ scale: 0.75 });
       const canvas = document.createElement("canvas");
       const context = canvas.getContext("2d");
   
